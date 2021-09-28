@@ -59,7 +59,7 @@ function s:timeout_fiddle(on_off)
   end
 endfunction
 
-augroup Bufstop
+augroup bufstop
   autocmd!
   autocmd BufEnter,WinEnter * call s:bufstop_append(winbufnr(winnr()))
   autocmd BufWinEnter * call s:bufstop_global_append(expand('<abuf>') + 0)
