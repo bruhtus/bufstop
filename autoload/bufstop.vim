@@ -8,7 +8,7 @@ let s:speed_mounted = 0
 
 let g:bufstop_split = "leftabove"
 let g:bufstop_dismiss_key = "<Space>"
-let g:bufstop_keys = "aszxcfvqwer12345tyuiopbnm67890ABCEFGIJKNOPQRSTUVZ"
+let g:bufstop_keys = "aszxcfvqwertyiopbnmABCEFGIJKNOPQRSTUVZ1234567890"
 let g:bufstop_sorting = "MRU"
 let g:bufstop_indicators = 1
 
