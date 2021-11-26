@@ -124,7 +124,7 @@ function! s:bufstop_delete_buffer(bufnr)
       exe "enew"
       setlocal bufhidden=wipe
       setlocal noswapfile
-      setlocal buftype=
+      setlocal buftype=nofile
       setlocal nobuflisted
     endif
 
