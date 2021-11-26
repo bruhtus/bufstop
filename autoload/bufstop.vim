@@ -60,7 +60,7 @@ function! s:bufstop_select_buffer(k)
 
   let delkey = 0
 
-  if (a:k == 'd')
+  if (a:k == 'D')
     let delkey = 1
   endif
 
@@ -153,7 +153,7 @@ function! s:map_keys()
   exe 'nnoremap <buffer> <silent> ' . g:bufstop_dismiss_key . ' :call <SID>bufstop_restore_winview()<CR>'
   nnoremap <buffer> <silent> <cr>             :call <SID>bufstop_select_buffer('cr')<cr>
   nnoremap <buffer> <silent> <2-LeftMouse>    :call <SID>bufstop_select_buffer('cr')<cr>
-  nnoremap <buffer> <silent> d                :call <SID>bufstop_select_buffer('d')<cr>
+  nnoremap <buffer> <silent> D                :call <SID>bufstop_select_buffer('D')<cr>
 
   for buf in s:allbufs
     exe "nnoremap <buffer> <silent> ". buf.key. "   :call <SID>bufstop_select_buffer('" . buf.key . "')<cr>"
