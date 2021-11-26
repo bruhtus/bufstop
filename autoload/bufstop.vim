@@ -35,7 +35,7 @@ endfunction
 
 " set properties for the s:bufstop_main window
 function! s:set_properties()
-  setlocal nonumber norelativenumber
+  setlocal number norelativenumber
   setlocal foldcolumn=0
   setlocal colorcolumn=
   setlocal nofoldenable
