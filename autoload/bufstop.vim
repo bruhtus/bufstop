@@ -11,6 +11,7 @@ let g:bufstop_dismiss_key = "<Space>"
 let g:bufstop_keys = "aszxcfvqwertyiopbnmABCEFGIJKNOPQRSTUVZ1234567890"
 let g:bufstop_sorting = "MRU"
 let g:bufstop_indicators = 1
+let g:bufstop_list_limit = get(g:, 'bufstop_list_limit', 6)
 
 let s:keystr = g:bufstop_keys
 let s:keys = split(s:keystr, '\zs')
@@ -310,7 +311,7 @@ function! s:bufstop_main()
     call add(lines, line)
   endfor
 
-  exe g:bufstop_split . " " . min([len(lines), 20]) . " split"
+  exe g:bufstop_split . " " . min([len(lines), g:bufstop_list_limit]) . " split"
 
   if s:local_bufnr < 0
     exe "silent e ".g:bufstop_name
