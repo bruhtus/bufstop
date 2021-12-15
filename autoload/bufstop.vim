@@ -61,7 +61,7 @@ function! s:bufstop_select_buffer(k)
 
   let delkey = 0
 
-  if (a:k ==# 'D')
+  if (a:k == 'D')
     let delkey = 1
   endif
 
@@ -88,11 +88,7 @@ function! s:bufstop_select_buffer(k)
       call s:bufstop_delete_buffer(s:bufnr)
     else
       exe "wincmd p"
-      if s:bufnr == bufnr('#')
-        exe "silent b" s:bufnr
-      else
-        exe "silent keepalt b" s:bufnr
-      endif
+      exe "silent b" s:bufnr
       if !exists('b:bufstop_winview')
         let b:bufstop_winview = winsaveview()
       endif
