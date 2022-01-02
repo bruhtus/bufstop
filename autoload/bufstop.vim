@@ -302,7 +302,7 @@ function! s:bufstop_main()
       let line .= " "
     endif
 
-    let path = buf["path"]
+    let path = fnamemodify(buf['path'], ':~:.:h')
     let pad = s:allpads.shortname
 
     " let shortn = fnamemodify(buf.shortname, ":r")
