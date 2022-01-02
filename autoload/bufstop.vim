@@ -321,7 +321,7 @@ function! s:bufstop_main()
   endif
 
   setlocal modifiable
-  exe 'setlocal statusline=total:\ ' . len(lines) . '\ buffer(s)\ [%P]'
+  setlocal statusline=total:\ %L\ buffer(s)\ [%P]
   " delete evertying in the buffer
   " (can't use 'normal ggdG' since the keys are remapped)
   exe 'goto'
