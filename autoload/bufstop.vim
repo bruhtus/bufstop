@@ -152,6 +152,7 @@ endfunction
 " create mappings for the s:bufstop_main window
 function! s:map_keys()
   exe 'nnoremap <buffer> <silent> ' . g:bufstop_dismiss_key . ' :call <SID>bufstop_restore_winview()<CR>'
+  nnoremap <buffer> <silent> .                :call <SID>bufstop_select_buffer('cr')<cr>
   nnoremap <buffer> <silent> <cr>             :call <SID>bufstop_select_buffer('cr')<cr>
   nnoremap <buffer> <silent> <2-LeftMouse>    :call <SID>bufstop_select_buffer('cr')<cr>
   nnoremap <buffer> <silent> D                :call <SID>bufstop_select_buffer('D')<cr>
