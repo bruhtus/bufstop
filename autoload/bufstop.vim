@@ -135,7 +135,7 @@ function! s:bufstop_delete_buffer(bufnr)
   call remove(s:allbufs, line('.')-1)
   exe "silent bd ".s:bufnr
   setlocal modifiable
-  exe "d"
+  delete _
   setlocal nomodifiable
   norm! 0
 endfunction
