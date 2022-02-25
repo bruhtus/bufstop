@@ -161,8 +161,8 @@ function! s:map_keys()
     exe "nnoremap <buffer> <silent> ". buf.key. "   :call <SID>bufstop_select_buffer('" . buf.key . "')<cr>"
   endfor
 
-  nnoremap <buffer> <silent> <nowait> d <C-d>H
-  nnoremap <buffer> <silent> u <C-u>H
+  nnoremap <buffer> <silent> <nowait> d <C-f>H
+  nnoremap <buffer> <silent> u <C-b>H
 endfunction
 
 function! s:map_preview_keys()
