@@ -149,6 +149,19 @@ function! s:bufstop_restore_winview()
   endif
 endfunction
 
+function! s:bufstop_search_with_fzf()
+  call s:bufstop_restore_winview()
+  if exists(':Buffers')
+    Buffers
+  elseif !exists('g:loaded_fzf_vim')
+    try
+      call enable#fzf('Buffers')
+    catch /^Vim\%((\a\+)\)\=:E117/
+      echo 'enable#fzf() function not found'
+    endtry
+  endif
+endfunction
+
 " create mappings for the s:bufstop_main window
 function! s:map_keys()
   exe 'nnoremap <buffer> <silent> ' . g:bufstop_dismiss_key . ' :call <SID>bufstop_restore_winview()<CR>'
@@ -161,8 +174,9 @@ function! s:map_keys()
     exe "nnoremap <buffer> <silent> ". buf.key. "   :call <SID>bufstop_select_buffer('" . buf.key . "')<cr>"
   endfor
 
-  nnoremap <buffer> <silent> <nowait> d <C-f>H
-  nnoremap <buffer> <silent> u <C-b>H
+  " nnoremap <buffer> <silent> <nowait> d <C-f>H
+  " nnoremap <buffer> <silent> u <C-b>H
+  nnoremap <buffer> <silent> u :call <SID>bufstop_search_with_fzf()<cr>
 endfunction
 
 function! s:map_preview_keys()
