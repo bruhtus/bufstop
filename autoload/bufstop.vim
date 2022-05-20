@@ -61,7 +61,7 @@ function! s:bufstop_select_buffer(k)
 
   let delkey = 0
 
-  if (a:k == 'D')
+  if (a:k =~# '\v(d|D)')
     let delkey = 1
   endif
 
@@ -85,7 +85,7 @@ function! s:bufstop_select_buffer(k)
 
   if bufexists(s:bufnr)
     if delkey
-      call s:bufstop_delete_buffer(s:bufnr)
+      call s:bufstop_delete_buffer(s:bufnr, a:k)
     else
       exe "wincmd p"
       exe "silent b" s:bufnr
@@ -102,7 +102,7 @@ function! s:bufstop_select_buffer(k)
 endfunction
 
 " delete a buffer without altering the window layout
-function! s:bufstop_delete_buffer(bufnr)
+function! s:bufstop_delete_buffer(bufnr, key)
   for window in range(1, winnr("$"))
     if winbufnr(window) != a:bufnr
       continue
@@ -133,7 +133,13 @@ function! s:bufstop_delete_buffer(bufnr)
   endfor
 
   call remove(s:allbufs, line('.')-1)
-  exe "silent bd ".s:bufnr
+
+  if a:key ==# 'd'
+    exe "silent bd " . a:bufnr
+  elseif a:key ==# 'D'
+    exe "silent bw " . a:bufnr
+  endif
+
   setlocal modifiable
   delete _
   setlocal nomodifiable
@@ -168,6 +174,7 @@ function! s:map_keys()
   nnoremap <buffer> <silent> .                :call <SID>bufstop_select_buffer('cr')<cr>
   nnoremap <buffer> <silent> <cr>             :call <SID>bufstop_select_buffer('cr')<cr>
   nnoremap <buffer> <silent> <2-LeftMouse>    :call <SID>bufstop_select_buffer('cr')<cr>
+  nnoremap <buffer> <silent> d                :call <SID>bufstop_select_buffer('d')<cr>
   nnoremap <buffer> <silent> D                :call <SID>bufstop_select_buffer('D')<cr>
 
   for buf in s:allbufs
