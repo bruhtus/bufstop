@@ -1,7 +1,6 @@
 " source: https://github.com/mihaifm/bufstop
 let s:lsoutput = ""
 let s:types = ["fullname", "path", "shortname", "indicators"]
-let s:local_bufnr = -1
 let s:fast_mode = 0
 let s:preview_mode = 0
 let s:speed_mounted = 0
@@ -147,7 +146,7 @@ function! s:bufstop_delete_buffer(bufnr, key)
 endfunction
 
 function! s:bufstop_restore_winview()
-  bd
+  bw
   wincmd p
   if exists('b:bufstop_winview')
     call winrestview(b:bufstop_winview)
@@ -335,12 +334,7 @@ function! s:bufstop_main()
 
   exe g:bufstop_split . " " . min([len(lines), g:bufstop_list_limit]) . " split"
 
-  if s:local_bufnr < 0
-    exe "silent e ".g:bufstop_name
-    let s:local_bufnr = bufnr(g:bufstop_name)
-  else
-    exe "b ".s:local_bufnr
-  endif
+  exe "silent e " . g:bufstop_name
 
   setlocal modifiable
   setlocal statusline=[%P]\ total:\ %L\ buffer(s)
