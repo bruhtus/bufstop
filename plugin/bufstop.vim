@@ -50,8 +50,8 @@ function! s:bufstop_global_append(bufnr)
   endif
 endfunction
 
-function s:timeout_fiddle(on_off)
-  if a:on_off == 1
+function s:timeout_fiddle(on)
+  if a:on
     let s:old_timeoutlen = &timeoutlen
     let &timeoutlen = 10
   else
